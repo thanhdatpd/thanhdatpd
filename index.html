@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Not allow site</h1>
+
+    <div id="googleMap" style="width: 100vw; height: 400vh"></div>
+
+    <script>
+      function myMap() {
+        var mapProp = {
+          center: new google.maps.LatLng(51.508742, -0.12085),
+          zoom: 5,
+        };
+        var map = new google.maps.Map(
+          document.getElementById("googleMap"),
+          mapProp
+        );
+      }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCACBZzy2KGOFy_OJ5gmq4RKlIpka_P8M0&callback=myMap"></script>
+  </body>
+</html>
