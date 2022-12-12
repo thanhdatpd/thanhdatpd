@@ -4,18 +4,20 @@
     <title>Test API</title>
   </head>
   <body>
-    <h2>Enter postcode/address below</h2>
+    <h2>Enter postcode/address then press enter</h2>
 
     <input id="inputData" />
     <button id="searchBtn">Search</button>
+    <p>Open develop tool to tracking error if no result</p>
+
     <p id="data"></p>
     <script>
       let geocoder;
+
       function initMap() {
         geocoder = new google.maps.Geocoder();
         const input = document.getElementById("inputData");
         const searchBtn = document.getElementById("searchBtn");
-        console.log(searchBtn);
         searchBtn.addEventListener("click", (e) => {
           geocode(input.value);
         });
