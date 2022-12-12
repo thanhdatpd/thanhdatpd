@@ -1,23 +1,55 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Test API</title>
+  </head>
   <body>
-    <h1>Not allow site</h1>
+    <h2>Enter postcode/address below</h2>
 
-    <div id="googleMap" style="width: 100vw; height: 100vh"></div>
-
+    <input id="inputData" />
+    <button id="searchBtn">Search</button>
+    <p id="data"></p>
     <script>
-      function myMap() {
-        var mapProp = {
-          center: new google.maps.LatLng(51.508742, -0.12085),
-          zoom: 5,
-        };
-        var map = new google.maps.Map(
-          document.getElementById("googleMap"),
-          mapProp
-        );
+      let geocoder;
+      function initMap() {
+        geocoder = new google.maps.Geocoder();
+        const input = document.getElementById("inputData");
+        const searchBtn = document.getElementById("searchBtn");
+        console.log(searchBtn);
+        searchBtn.addEventListener("click", (e) => {
+          geocode(input.value);
+        });
+        input.addEventListener("keyup", function (event) {
+          if (event.key === "Enter") {
+            geocode(input.value);
+          }
+        });
       }
+
+      function geocode(adr) {
+        geocoder
+          .geocode({ address: adr, region: "vn" })
+          .then((result) => {
+            const { results } = result;
+            console.log(result);
+            document.getElementById("data").innerText = JSON.stringify(
+              result,
+              null,
+              2
+            );
+            return results;
+          })
+          .catch((e) => {
+            document.getElementById("data").innerText =
+              "Geocode was not successful for the following reason: " + e;
+          });
+      }
+      window.initMap = initMap;
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCACBZzy2KGOFy_OJ5gmq4RKlIpka_P8M0&callback=myMap"></script>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCACBZzy2KGOFy_OJ5gmq4RKlIpka_P8M0&callback=initMap"
+    ></script>
   </body>
 </html>
