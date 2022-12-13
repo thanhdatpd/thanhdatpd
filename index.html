@@ -4,11 +4,11 @@
     <title>Test API</title>
   </head>
   <body>
-    <h2>Enter postcode/address then press enter</h2>
-
+    <h2>郵便番号/住所を入力し、Enter キーを押します</h2>
+    <p>EX: 251-0047</p>
     <input id="inputData" />
-    <button id="searchBtn">Search</button>
-    <p>Open develop tool to tracking error if no result</p>
+    <button id="searchBtn">探す</button>
+    <p>結果がない場合は開発者ツールを開いてエラーを追跡する</p>
 
     <p id="data"></p>
     <script>
@@ -30,7 +30,7 @@
 
       function geocode(adr) {
         geocoder
-          .geocode({ address: adr, region: "vn" })
+          .geocode({ address: adr, region: "JP", language: "jp"  })
           .then((result) => {
             const { results } = result;
             console.log(result);
@@ -43,7 +43,7 @@
           })
           .catch((e) => {
             document.getElementById("data").innerText =
-              "Geocode was not successful for the following reason: " + e;
+              "次の理由により、ジオコーディングは成功しませんでした: " + e;
           });
       }
       window.initMap = initMap;
