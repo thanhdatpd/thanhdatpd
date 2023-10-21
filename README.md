@@ -9,4 +9,6 @@
 
 How is your today ?
 
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=thanhdatpd&show_icons=true&theme=radical)
+
 ![](https://komarev.com/ghpvc/?username=thanhdatpd&color=green)
